@@ -1,0 +1,60 @@
+--Lua Online Configurable Calculator v1.0 by realgold
+--Set the functions you want solved to true. Will return each organized.
+
+
+
+--Multipulcation
+IsMultip = false
+ValuestoMultiply = {'1','2','5'} --Use format of {1,2,3}, which would return the 1*2*3
+
+--Exponent
+IsExpon = false
+ExponBase = 10 --Use format of ExponBase^ ExponExponent, ExponBase = 10 and ExponExponent = 3 returns 1000
+ExponExponent = 3 
+
+--Solve Quadratic
+IsQuadSolve = true
+QSa = 1 --Use format of ax^2 + bx + c. Make sure all numbers are on side of the quadratic
+QSb = 2
+QSc = -3 
+
+--Solve Area of Cylinder
+IsCylinderArea = false
+CylinderHeight = 1
+CylinderRadius = 2
+
+
+
+
+
+
+
+--Multipulcation
+if IsMultip then
+    local Multiplicative = 1
+    for i,v in pairs(ValuestoMultiply) do
+        Multiplicative = Multiplicative * v
+    end    
+    print('Multiplication equal to ' .. Multiplicative)
+end
+--Exponent
+if IsExpon then
+   local Sol = math.pow(ExponBase,ExponExponent)
+   print('Exponent solutioon equal to ' .. Sol)
+end    
+--Solve Quadratic
+if IsQuadSolve then
+    local Discriminant = (math.power(QSb,2) - (4*QSa*QSb))
+    if Discriminant > 0 then 
+        print('Quadratic has no solutions')
+    else
+       local Step2 = (math.sqrt(Discriminant))
+       local Step3a = (-QSb) + Step2
+       local Step3b = (-QSb) - Step2
+       if Step3a == Step3b then
+            print('Quadratic has one solution, y = '..(Step3a/2))
+        else
+            print('Quadratic has two solutions, y = '..(Step3a/2)..','..(Step3b/2))
+        end   
+    end    
+end
